@@ -1,4 +1,10 @@
 /* Search input */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 input[type='text'] {
   outline: none;
   transition: background-color var(--transition-fast);
@@ -12,18 +18,48 @@ input[type='text']::placeholder {
   color: var(--text-secondary);
 }
 
-/* Transform utilities */
-.transform {
-  transform: translateY(-50%);
+/* Position utilities */
+.relative {
+  position: relative;
 }
 
-.top-1\/2 {
+.absolute {
+  position: absolute;
+}
+
+.top-half {
   top: 50%;
 }
 
+.left-3 {
+  left: 0.75rem;
+}
+
+.right-3 {
+  right: 0.75rem;
+}
+
+/* Transform utilities */
+.translate-y-down {
+  transform: translateY(-50%);
+}
+
 /* Width utilities */
+.w-full {
+  width: 100%;
+}
+
 .w-64 {
   width: 16rem;
+}
+
+/* Padding utilities */
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
+.pr-md {
+  padding-right: var(--spacing-md);
 }
 
 /* Gap utilities */
@@ -35,7 +71,17 @@ input[type='text']::placeholder {
   gap: var(--spacing-md);
 }
 
-/* Icon colors */
+/* Icon styling */
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
 svg {
   display: block;
 }
@@ -44,7 +90,16 @@ button:hover svg {
   fill: var(--text-primary);
 }
 
-/* Additional margin utilities */
+/* Additional utilities */
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.placeholder-secondary::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Margin utilities */
 .mb-md {
   margin-bottom: var(--spacing-md);
 }

@@ -18,13 +18,13 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
             </svg>
           </button>
           <div className="text-lg font-medium text-primary">Asana</div>
-          <div className="relative flex items-center">
+          <div className="search-container w-64">
             <input
               type="text"
               placeholder="Search"
-              className="bg-grey rounded-md py-sm pl-md pr-10 text-sm w-64 border-0"
+              className="bg-grey rounded-md py-sm pl-10 pr-md text-sm w-full border-0 placeholder-secondary"
             />
-            <div className="absolute right-3 pointer-events-none">
+            <div className="search-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text-secondary)">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
               </svg>
