@@ -53,6 +53,28 @@ input[type='text']::placeholder {
   width: 16rem;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
+.w-px {
+  width: 1px;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+/* Margin utilities */
+.-ml-64 {
+  margin-left: -16rem;
+}
+
+.mx-sm {
+  margin-left: var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+}
+
 /* Padding utilities */
 .pl-10 {
   padding-left: 2.5rem;
@@ -63,12 +85,30 @@ input[type='text']::placeholder {
 }
 
 /* Gap utilities */
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+
 .gap-sm {
   gap: var(--spacing-sm);
 }
 
 .gap-md {
   gap: var(--spacing-md);
+}
+
+/* Height utilities */
+.h-5 {
+  height: 1.25rem;
+}
+
+/* Transition utilities */
+.transition-all {
+  transition-property: all;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 /* Icon styling */
@@ -97,9 +137,4 @@ button:hover svg {
 
 .placeholder-secondary::placeholder {
   color: var(--text-secondary);
-}
-
-/* Margin utilities */
-.mb-md {
-  margin-bottom: var(--spacing-md);
 }
