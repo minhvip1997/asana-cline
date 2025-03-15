@@ -1,0 +1,50 @@
+/* Search input */
+input[type='text'] {
+  outline: none;
+  transition: background-color var(--transition-fast);
+}
+
+input[type='text']:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+input[type='text']::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Transform utilities */
+.transform {
+  transform: translateY(-50%);
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+/* Width utilities */
+.w-64 {
+  width: 16rem;
+}
+
+/* Gap utilities */
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+/* Icon colors */
+svg {
+  display: block;
+}
+
+button:hover svg {
+  fill: var(--text-primary);
+}
+
+/* Additional margin utilities */
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
