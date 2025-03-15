@@ -3,21 +3,26 @@ import Home from './components/Home';
 import Header from './components/Header';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState('home');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  const renderContent = (): React.ReactElement => {
-    switch (currentView) {
-      case 'home':
-        return <Home />;
-      default:
-        return <Home />;
-    }
+  const toggleSidebar = (): void => {
+    console.log('Toggling sidebar, current state:', isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Log state changes
+  React.useEffect(() => {
+    console.log('Sidebar state:', isSidebarOpen);
+  }, [isSidebarOpen]);
+
   return (
-    <div className="min-h-full bg-grey flex">
+    <div className="min-h-full bg-grey flex overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 bg-light shadow-md flex-shrink-0 border-r">
+      <aside
+        className={`w-64 bg-light shadow-md flex-shrink-0 border-r transition-all duration-300 h-screen overflow-y-auto ${
+          !isSidebarOpen ? '-ml-64' : ''
+        }`}
+      >
         {/* Workspace section */}
         <div className="p-md border-b">
           <div className="flex items-center justify-between mb-sm">
@@ -116,9 +121,9 @@ const App: React.FC = () => {
       </aside>
 
       {/* Main content */}
-      <div className="flex-1">
-        <Header currentView={currentView} onViewChange={setCurrentView} />
-        {renderContent()}
+      <div className="flex-1 transition-all duration-300">
+        <Header onToggleSidebar={toggleSidebar} />
+        <Home />
       </div>
     </div>
   );
