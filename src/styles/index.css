@@ -1,0 +1,11 @@
+/* Import CSS files in specific order */
+@import './variables.css';
+@import './reset.css';
+@import './utilities.css';
+@import './components.css';
+@import './home.css';
+
+/* Additional global styles */
+.text-white {
+  color: white;
+}
