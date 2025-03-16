@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 import { Task, TaskSection as TaskSectionType } from '../../types/Task';
-import TaskSection from './TaskSection';
-import TaskItem from './TaskItem';
+import BoardView from './views/BoardView';
+import ListView from './views/ListView';
+import CalendarView from './views/CalendarView';
 import '../../styles/tasks.css';
 
 type SortType = 'deadline' | 'priority' | 'none';
+type ViewMode = 'list' | 'board' | 'calendar';
+
+interface ViewIcons {
+  list: string;
+  board: string;
+  calendar: string;
+}
+
+const viewIcons: ViewIcons = {
+  list: 'M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z',
+  board: 'M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h4v4H7V7zm0 6h4v4H7v-4zm6-6h4v4h-4V7zm0 6h4v4h-4v-4z',
+  calendar:
+    'M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z',
+};
 
 const priorityWeight = {
   High: 3,
@@ -13,7 +28,6 @@ const priorityWeight = {
 };
 
 const MyTasks: React.FC = () => {
-  // Sample initial tasks
   const [tasks, setTasks] = useState<Task[]>([
     {
       id: '1',
@@ -46,6 +60,7 @@ const MyTasks: React.FC = () => {
 
   const sections: TaskSectionType[] = ['Todo', 'In Progress', 'Done'];
   const [sortBy, setSortBy] = useState<SortType>('none');
+  const [viewMode, setViewMode] = useState<ViewMode>('board');
 
   const handleStatusChange = (taskId: string, newStatus: Task['status']): void => {
     setTasks(tasks.map((task) => (task.id === taskId ? { ...task, status: newStatus } : task)));
@@ -84,7 +99,25 @@ const MyTasks: React.FC = () => {
     <div className="p-lg">
       <div className="mb-xl">
         <div className="flex items-center justify-between mb-md">
-          <h1 className="text-2xl font-medium">My Tasks</h1>
+          <div className="flex items-center gap-md">
+            <h1 className="text-2xl font-medium">My Tasks</h1>
+            <div className="flex items-center gap-sm bg-light rounded-lg p-xs">
+              {(['list', 'board', 'calendar'] as ViewMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setViewMode(mode)}
+                  className={`p-sm rounded-md transition-fast ${
+                    viewMode === mode ? 'bg-primary text-white' : 'text-secondary hover:bg-grey'
+                  }`}
+                  title={`${mode.charAt(0).toUpperCase() + mode.slice(1)} View`}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={viewIcons[mode]} />
+                  </svg>
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="flex items-center gap-md">
             <div className="flex items-center gap-sm">
               <span className="text-sm text-secondary">Sort by:</span>
@@ -115,31 +148,30 @@ const MyTasks: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-lg">
-        {sections.map((status) => (
-          <div
-            key={status}
-            className={`flex-1 ${
-              status === 'Todo'
-                ? 'todo-column'
-                : status === 'In Progress'
-                  ? 'progress-column'
-                  : 'done-column'
-            }`}
-          >
-            <TaskSection
-              section={status}
-              taskCount={getSortedTasks(status).length}
-              onAddTask={handleAddTask}
-            />
-            <div className="task-list">
-              {getSortedTasks(status).map((task) => (
-                <TaskItem key={task.id} task={task} onStatusChange={handleStatusChange} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      {viewMode === 'board' && (
+        <BoardView
+          tasks={tasks}
+          sections={sections}
+          sortBy={sortBy}
+          onTaskStatusChange={handleStatusChange}
+          onAddTask={handleAddTask}
+          getSortedTasks={getSortedTasks}
+        />
+      )}
+
+      {viewMode === 'list' && (
+        <ListView
+          tasks={tasks}
+          sections={sections}
+          sortBy={sortBy}
+          onTaskStatusChange={handleStatusChange}
+          getSortedTasks={getSortedTasks}
+        />
+      )}
+
+      {viewMode === 'calendar' && (
+        <CalendarView tasks={tasks} onTaskStatusChange={handleStatusChange} />
+      )}
     </div>
   );
 };

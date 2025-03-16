@@ -46,13 +46,6 @@
   background: var(--bg-hover);
 }
 
-.task-checkbox {
-  width: 18px;
-  height: 18px;
-  margin-right: var(--space-md);
-  cursor: pointer;
-}
-
 .task-priority {
   padding: 4px 8px;
   border-radius: var(--radius-sm);
@@ -75,19 +68,6 @@
   color: var(--text-secondary);
 }
 
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-md);
-  padding: var(--space-sm) 0;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 500;
-}
-
 .add-task-button {
   display: flex;
   align-items: center;
@@ -101,4 +81,51 @@
 .add-task-button:hover {
   background: var(--bg-hover);
   color: var(--text-primary);
+}
+
+/* Calendar View Styles */
+.calendar-grid {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.calendar-cell {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-height: 120px;
+  padding: var(--space-sm);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.calendar-task {
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+  font-size: 12px;
+}
+
+/* List View Styles */
+.list-container {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.list-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-white);
 }
