@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
 import Header from './components/Header';
+import MyTasks from './components/tasks/MyTasks';
 
 const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [activeView, setActiveView] = useState<'home' | 'tasks'>('home');
 
   const toggleSidebar = (): void => {
     console.log('Toggling sidebar, current state:', isSidebarOpen);
@@ -49,23 +51,34 @@ const App: React.FC = () => {
             {
               name: 'My Tasks',
               icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+              onClick: () => setActiveView('tasks'),
+              active: activeView === 'tasks',
             },
             {
               name: 'Inbox',
               icon: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z',
+              onClick: () => setActiveView('home'),
+              active: activeView === 'home',
             },
             {
               name: 'Projects',
               icon: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',
+              onClick: () => setActiveView('home'),
+              active: false,
             },
             {
               name: 'Reporting',
               icon: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 16H7V7h10v12z',
+              onClick: () => setActiveView('home'),
+              active: false,
             },
           ].map((item) => (
             <button
               key={item.name}
-              className="w-full flex items-center gap-sm p-sm rounded-md hover-bg-grey transition-fast mb-xs text-secondary"
+              className={`w-full flex items-center gap-sm p-sm rounded-md hover-bg-grey transition-fast mb-xs ${
+                item.active ? 'bg-grey text-primary' : 'text-secondary'
+              }`}
+              onClick={item.onClick}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d={item.icon} />
@@ -123,7 +136,7 @@ const App: React.FC = () => {
       {/* Main content */}
       <div className="flex-1 transition-all duration-300">
         <Header onToggleSidebar={toggleSidebar} />
-        <Home />
+        {activeView === 'home' ? <Home onNavigate={setActiveView} /> : <MyTasks />}
       </div>
     </div>
   );

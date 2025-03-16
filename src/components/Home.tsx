@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home: React.FC = () => {
+const Home: React.FC<{ onNavigate: (view: 'home' | 'tasks') => void }> = ({ onNavigate }) => {
   const quickActions = [
     {
       title: 'Create Task',
@@ -46,6 +46,18 @@ const Home: React.FC = () => {
       <section className="mb-xl">
         <h2 className="text-lg font-medium mb-md">Quick Actions</h2>
         <div className="flex gap-md">
+          <button
+            className="flex-1 bg-light rounded-lg p-md hover-shadow transition-fast border border-l-4 border-l-primary"
+            onClick={() => onNavigate('tasks')}
+          >
+            <div className="flex items-center gap-sm mb-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--primary-color)">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+              <span className="font-medium">Go to My Tasks</span>
+            </div>
+            <p className="text-sm text-secondary">View and manage your tasks</p>
+          </button>
           {quickActions.map((action) => (
             <button
               key={action.title}
