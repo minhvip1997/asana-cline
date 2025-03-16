@@ -1,0 +1,131 @@
+.task-list {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  min-height: 200px;
+  padding: var(--space-sm);
+}
+
+.task-section {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 0;
+}
+
+.section-header {
+  padding: var(--space-md);
+  margin-bottom: 0;
+}
+
+.todo-column .task-section {
+  border-bottom-color: var(--primary-color);
+}
+
+.progress-column .task-section {
+  border-bottom-color: var(--warning-color);
+}
+
+.done-column .task-section {
+  border-bottom-color: var(--success-color);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition-fast);
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item:hover {
+  background: var(--bg-hover);
+}
+
+.task-priority {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.priority-high {
+  background: var(--error-color);
+  color: white;
+}
+
+.priority-medium {
+  background: var(--warning-color);
+  color: white;
+}
+
+.priority-low {
+  background: var(--secondary-color);
+  color: var(--text-secondary);
+}
+
+.add-task-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.add-task-button:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Calendar View Styles */
+.calendar-grid {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.calendar-cell {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-height: 120px;
+  padding: var(--space-sm);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.calendar-task {
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+  font-size: 12px;
+}
+
+/* List View Styles */
+.list-container {
+  background: var(--bg-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.list-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-white);
+}
